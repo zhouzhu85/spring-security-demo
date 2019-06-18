@@ -21,9 +21,19 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
         permitAll():允许所有人（匿名和登录用户）方法
         -->
         <security:intercept-url pattern="/product/index" access="permitAll()"/>
+        <security:intercept-url pattern="/userLogin" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
-<!--        <security:http-basic/>-->
-        <security:form-login/>
+
+        <!-- security:http-basic: 使用 HttpBasic 方式进行登录（认证） -->
+        <!--<security:http-basic/>-->
+
+        <!--官方表单认证-->
+        <!--<security:form-login/>-->
+
+        <!--自定义登录页面-->
+        <security:form-login login-page="/userLogin" login-processing-url="/securityLogin"/>
+        <!--关闭spring security csrf 机制-->
+        <security:csrf disabled="true"/>
     </security:http>
     <!--
     security:authentication-manager： 认证管理器
