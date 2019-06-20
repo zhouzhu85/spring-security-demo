@@ -13,9 +13,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 <!--  扫描Controller类  -->
     <contenxt:component-scan base-package="com.zhouzhu"/>
 <!--  注解方式处理器映射和处理器适配器  -->
-    <mvc:annotation-driven>
-
-    </mvc:annotation-driven>
+    <mvc:annotation-driven></mvc:annotation-driven>
+<!-- 处理静态资源 -->
+    <mvc:default-servlet-handler/>
 <!--  视图解析器  -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--前缀-->
