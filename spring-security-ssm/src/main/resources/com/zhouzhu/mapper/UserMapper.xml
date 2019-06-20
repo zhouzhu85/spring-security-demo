@@ -14,4 +14,7 @@
         inner join sys_permission permission on permission.id=role_permission.perm_id
         where `user`.username=#{value};
     </select>
+    <update id="updatePassword" parameterType="user">
+        update sys_user set password=#{password} where username=#{username}
+    </update>
 </mapper>

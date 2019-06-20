@@ -27,6 +27,7 @@
     $(function () {
         $("#loginBtn").click(function () {
             $.post("${pageContext.request.contextPath}/securityLogin",$("#loginForm").serialize(),function (data) {
+                console.log(data)
                 if (data.success){
                     window.location.href="${pageContext.request.contextPath}/product/index";
                 }else{
