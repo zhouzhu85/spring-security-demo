@@ -20,8 +20,11 @@ public class MyAuthentiactionFailureHandler implements AuthenticationFailureHand
     private ObjectMapper objectMapper=new ObjectMapper();
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+        //返回json数据
         Map map=new HashMap();
         map.put("success",false);
+        //错误信息
+        map.put("errorMsg",e.getMessage());
         String json = objectMapper.writeValueAsString(map);
         httpServletResponse.setContentType("text/json;charset=utf-8");
         httpServletResponse.getWriter().write(json);

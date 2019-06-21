@@ -20,6 +20,7 @@
     <form id="loginForm">
         用户名：<input type="text" name="username"/><br/>
         密码： <input type="password" name="password"/><br/>
+        验证码：<input type="text" name="imageCode"/><img src="${pageContext.request.contextPath}/imageCode"/><br/>
         <input type="button" value="登录" id="loginBtn"/>
     </form>
 </body>
@@ -31,7 +32,7 @@
                 if (data.success){
                     window.location.href="${pageContext.request.contextPath}/product/index";
                 }else{
-                    alert("登录失败，用户或密码错误")
+                    alert("登录失败："+data.errorMsg);
                 }
             },"json");
         })
