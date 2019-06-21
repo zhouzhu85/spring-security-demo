@@ -23,6 +23,8 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
                              authentication-failure-handler-ref="myAuthentiactionFailureHandler"/>
         <security:csrf disabled="true"/>
         <security:access-denied-handler error-page="/error"/>
+<!-- remember me-->
+        <security:remember-me token-repository-ref="jdbcTokenRepository" token-validity-seconds="3600"/>
     </security:http>
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="myUserDetailService">
@@ -38,5 +40,11 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 <!--验证码过滤器-->
     <bean id="imageCodeAuthenticationFilter" class="com.zhouzhu.security.ImageCodeAuthenticationFilter">
         <property name="authenticationFailureHandler" ref="myAuthentiactionFailureHandler"/>
+    </bean>
+<!--remember-me 记住功能-->
+    <bean id="jdbcTokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+        <property name="dataSource" ref="dataSource"/>
+<!--启动时在数据库建立“记住”功能的表-->
+        <property name="createTableOnStartup" value="true"/>
     </bean>
 </beans>
