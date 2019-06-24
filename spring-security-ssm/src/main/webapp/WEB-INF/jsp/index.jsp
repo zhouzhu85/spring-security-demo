@@ -12,6 +12,7 @@
     <title>首页</title>
 </head>
 <body>
+欢迎 ${username}
 <security:authorize access="hasRole('ROLE_USER')">
     <a href="${pageContext.request.contextPath}/product/add">商品添加</a>
 </security:authorize>
