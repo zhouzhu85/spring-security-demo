@@ -1,12 +1,15 @@
 package com.zhouzhu.security;
 
+import com.zhouzhu.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 /**
  * @author zhouzhu
@@ -16,11 +19,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private MyUserDetailService myUserDetailService;
+
+    @Autowired
+    private MyAuthentiactionFailureHandler myAuthentiactionFailureHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //security5.0 改变密码的格式，需要加密才能登录
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("zhouzhu").password(new BCryptPasswordEncoder().encode("123456")).authorities("ROLE_USER");
+//        //security5.0 改变密码的格式，需要加密才能登录
+//        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+//                .withUser("zhouzhu").password(new BCryptPasswordEncoder().encode("123456")).authorities("ROLE_USER");
+        auth.userDetailsService(myUserDetailService).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().mvcMatchers("");
     }
 
     @Override
@@ -32,7 +48,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/product/list").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
             .and()
-            .formLogin()
+            .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").successForwardUrl("/index").failureUrl("/login?error=true")
+            .and().csrf().disable()
         ;
+        http.logout().logoutSuccessUrl("/login");
     }
 }
