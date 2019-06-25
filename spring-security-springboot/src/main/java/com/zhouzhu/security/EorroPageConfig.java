@@ -16,12 +16,9 @@ import org.springframework.http.HttpStatus;
 public class EorroPageConfig {
     @Bean
     public WebServerFactoryCustomizer<ConfigurableWebServerFactory> webServerFactoryCustomizer(){
-        return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
-            @Override
-            public void customize(ConfigurableWebServerFactory factory) {
-                ErrorPage errorPage=new ErrorPage(HttpStatus.FORBIDDEN,"/403");
-                factory.addErrorPages(errorPage);
-            }
+        return factory -> {
+            ErrorPage errorPage=new ErrorPage(HttpStatus.FORBIDDEN,"/403");
+            factory.addErrorPages(errorPage);
         };
     }
 }
