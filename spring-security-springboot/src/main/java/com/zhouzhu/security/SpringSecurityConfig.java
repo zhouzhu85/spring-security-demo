@@ -36,7 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().mvcMatchers("");
+        web.ignoring().mvcMatchers("/css/**","/img/**","/plugins/**");
     }
 
     @Override
