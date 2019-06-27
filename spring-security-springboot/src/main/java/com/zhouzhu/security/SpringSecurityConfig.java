@@ -48,7 +48,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/product/list").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
             .and()
-            .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").successForwardUrl("/index").failureUrl("/login?error=true")
+            .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").defaultSuccessUrl("/index").failureUrl("/login?error=true")
             .and().csrf().disable()
         ;
         http.logout().logoutSuccessUrl("/login");

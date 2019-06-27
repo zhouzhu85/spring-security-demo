@@ -23,7 +23,7 @@ public class MainController {
 
     @RequestMapping("index")
     public String index(){
-        return "index";
+        return "all-admin-index";
     }
     @RequestMapping("403")
     public String notAuth(){
