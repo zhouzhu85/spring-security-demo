@@ -1,9 +1,13 @@
 package com.zhouzhu.controller;
 
+import com.zhouzhu.pojo.User;
+import com.zhouzhu.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,16 +18,22 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class MainController {
+    @Autowired
+    private UserService userService;
 
     @GetMapping("login")
     public String login(){
         return "admin-login";
     }
-
-
-    @RequestMapping("index")
-    public String index(){
-        return "all-admin-index";
+    @GetMapping("register")
+    public String register(){
+        return "all-admin-register";
+    }
+    @PostMapping("register")
+    @ResponseBody
+    public String register(User user){
+        userService.createUser(user);
+        return "200";
     }
     @RequestMapping("403")
     public String notAuth(){

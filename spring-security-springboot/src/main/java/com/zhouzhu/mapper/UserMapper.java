@@ -30,4 +30,10 @@ public interface UserMapper {
      * @param user
      */
     void updatePassword(User user);
+
+    /**
+     * 注册
+     * @param user
+     */
+    void createUser(User user);
 }

@@ -36,7 +36,7 @@
         <div class="register-logo">
 
 
-            <a href="all-admin-index.html"><b>数据</b>后台管理系统</a>
+            <a href="all-admin-index.html"><b>RBAC</b>后台管理系统</a>
 
 
         </div>
@@ -44,17 +44,17 @@
         <div class="register-box-body">
             <p class="login-box-msg">新用户注册</p>
 
-            <form action="all-admin-index.html" method="get">
+            <form id="userFormData">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="全名">
+                    <input type="text" class="form-control" placeholder="用户名" name="username">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
+<!--                <div class="form-group has-feedback">-->
+<!--                    <input type="email" class="form-control" placeholder="Email">-->
+<!--                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>-->
+<!--                </div>-->
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="密码">
+                    <input type="password" class="form-control" placeholder="密码" name="password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -71,19 +71,19 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">注册</button>
+                        <button type="button" id="singUp" class="btn btn-primary btn-block btn-flat">注册</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
-            <div class="social-auth-links text-center">
-                <p>- 或者 -</p>
-                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-qq"></i> 腾讯QQ用户登录</a>
-                <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-weixin"></i> 微信用户登录</a>
-            </div>
+<!--            <div class="social-auth-links text-center">-->
+<!--                <p>- 或者 -</p>-->
+<!--                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-qq"></i> 腾讯QQ用户登录</a>-->
+<!--                <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-weixin"></i> 微信用户登录</a>-->
+<!--            </div>-->
 
-            <a href="all-admin-login.html" class="text-center">我有账号，现在就去登录</a>
+            <a href="/login" class="text-center">我有账号，现在就去登录</a>
         </div>
         <!-- /.form-box -->
     </div>
@@ -97,6 +97,12 @@
     <script src="../plugins/iCheck/icheck.min.js"></script>
     <script>
         $(function() {
+            $("#singUp").click(function () {
+                $.post("/register",$("#userFormData").serialize(),function (data) {
+                    console.log(data);
+                    window.location.href="/login";
+                },"json")
+            })
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',

@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhouzhu.mapper.UserMapper">
+    <insert id="createUser" parameterType="com.zhouzhu.pojo.User">
+        insert into
+        sys_user
+        (id,username,realname,password,createDate)
+        values (#{id},#{username},#{realname},#{password},#{createDate})
+    </insert>
     <select id="findByUsername" parameterType="string" resultType="com.zhouzhu.pojo.User">
         select * from sys_user where username=#{value}
     </select>

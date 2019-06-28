@@ -41,15 +41,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/product/add").hasAuthority("ROLE_USER")
-                .antMatchers("/product/update").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/product/delete").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/product/list").hasAuthority("ROLE_ADMIN")
+            http
+                .authorizeRequests()
+                    .antMatchers("/product/add").hasAuthority("ROLE_USER")
+                    .antMatchers("/product/update").hasAuthority("ROLE_ADMIN")
+                    .antMatchers("/product/delete").hasAuthority("ROLE_ADMIN")
+                    .antMatchers("/product/list").hasAuthority("ROLE_ADMIN")
+                    .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
-            .and()
-            .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").defaultSuccessUrl("/index").failureUrl("/login?error=true")
-            .and().csrf().disable()
+                .and()
+                    .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/login").defaultSuccessUrl("/").failureUrl("/login?error=true")
+                .and()
+                    .csrf().disable()
         ;
         http.logout().logoutSuccessUrl("/login");
     }
