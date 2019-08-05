@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface IproductService {
     List<ProductDO> findAll();
+
+    void save(ProductDO productDO);
 }

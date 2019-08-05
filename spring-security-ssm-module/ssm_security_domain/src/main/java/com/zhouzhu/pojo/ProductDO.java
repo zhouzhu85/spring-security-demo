@@ -1,6 +1,7 @@
 package com.zhouzhu.pojo;
 
 import com.zhouzhu.utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -25,6 +26,7 @@ public class ProductDO {
     private String cityName;
 
     /** 出发时间 **/
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date departureTime;
 
     /** 虚拟字段（方便departureTime字段被格式化为时间字符） **/
@@ -84,7 +86,7 @@ public class ProductDO {
 
     public String getDepartureTimeStr() {
         if (departureTime!=null){
-            return DateUtils.date2String(departureTime,"yyyy-MM-dd HH:mm:ss");
+            return DateUtils.date2String(departureTime,"yyyy-MM-dd HH:mm");
         }
         return departureTimeStr;
     }
