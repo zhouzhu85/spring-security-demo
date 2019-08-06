@@ -11,7 +11,7 @@ import java.util.Date;
  * @Description
  * @create 2019-08-02 11:48
  */
-public class ProductDO {
+public class Product {
 
     /** 主键 **/
     private String id;

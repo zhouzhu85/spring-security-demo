@@ -1,6 +1,6 @@
 package com.zhouzhu.service;
 
-import com.zhouzhu.pojo.ProductDO;
+import com.zhouzhu.pojo.Product;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @create 2019-08-02 14:30
  */
 public interface IproductService {
-    List<ProductDO> findAll();
+    List<Product> findAll();
 
-    void save(ProductDO productDO);
+    void save(Product product);
 }

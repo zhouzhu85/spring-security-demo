@@ -1,7 +1,7 @@
 package com.zhouzhu.service.impl;
 
 import com.zhouzhu.dao.IproductDao;
-import com.zhouzhu.pojo.ProductDO;
+import com.zhouzhu.pojo.Product;
 import com.zhouzhu.service.IproductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,12 @@ public class IproductServiceImpl implements IproductService {
     private IproductDao productDao;
 
     @Override
-    public List<ProductDO> findAll() {
+    public List<Product> findAll() {
         return productDao.findAll();
     }
 
     @Override
-    public void save(ProductDO productDO) {
-        productDao.save(productDO);
+    public void save(Product product) {
+        productDao.save(product);
     }
 }

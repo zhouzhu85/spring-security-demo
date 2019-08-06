@@ -1,11 +1,11 @@
 package com.zhouzhu.cotroller;
 
-import com.zhouzhu.pojo.ProductDO;
+import com.zhouzhu.pojo.Product;
 import com.zhouzhu.service.IproductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -34,12 +34,18 @@ public class ProductController {
 
     /**
      * 产品添加
-     * @param productDO
+     * @param product
      */
     @RequestMapping("/save")
-    public String save(ProductDO productDO){
-        iproductService.save(productDO);
+    public String save(Product product){
+        iproductService.save(product);
         return "redirect:findAll.do";
     }
 
+    @RequestMapping("findById")
+    public ModelAndView findById(@RequestParam(name = "id",required = true) String orderId){
+        ModelAndView modelAndView=new ModelAndView();
+
+        return modelAndView;
+    }
 }
