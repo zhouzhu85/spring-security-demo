@@ -32,4 +32,12 @@ public class OrdersController {
         mv.addObject("pageInfo",pageInfo);
         return mv;
     }
+    @RequestMapping("findById")
+    public ModelAndView findById(@RequestParam(name = "id",required = true)String orderId){
+        ModelAndView modelAndView=new ModelAndView();
+        Orders orders=iOrdersService.findById(orderId);
+        modelAndView.addObject("orders",orders);
+        modelAndView.setViewName("orders-show");
+        return modelAndView;
+    }
 }

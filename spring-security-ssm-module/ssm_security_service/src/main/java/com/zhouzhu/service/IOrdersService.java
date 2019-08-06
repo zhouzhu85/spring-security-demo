@@ -12,4 +12,6 @@ import java.util.List;
 public interface IOrdersService {
 
     List<Orders> findAllByPage(Integer page, Integer pageSize);
+
+    Orders findById(String orderId);
 }

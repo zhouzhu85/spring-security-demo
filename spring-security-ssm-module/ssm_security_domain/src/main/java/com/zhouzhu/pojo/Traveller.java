@@ -57,6 +57,21 @@ public class Traveller {
     }
 
     public String getCredentialsTypeStr() {
+        if (credentialsType!=null){
+            switch (credentialsType){
+                case 0:
+                    credentialsTypeStr="身份证";
+                    break;
+                case 1:
+                    credentialsTypeStr="护照";
+                    break;
+                case 2:
+                    credentialsTypeStr="军官";
+                    break;
+                default:
+                    break;
+            }
+        }
         return credentialsTypeStr;
     }
 
@@ -81,6 +96,14 @@ public class Traveller {
     }
 
     public String getTravellerTypeStr() {
+        if (travellerType!=null){
+            if (travellerType==0){
+                travellerTypeStr="成人";
+            }
+            if (travellerType==1){
+                travellerTypeStr="儿童";
+            }
+        }
         return travellerTypeStr;
     }
 
