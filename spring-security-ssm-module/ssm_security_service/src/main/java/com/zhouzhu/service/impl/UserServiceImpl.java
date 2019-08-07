@@ -43,7 +43,7 @@ public class UserServiceImpl implements IUserService {
     private List<SimpleGrantedAuthority> getAuthority(List<Role> roles){
         List<SimpleGrantedAuthority> authorities=new ArrayList<>();
         for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName()));
         }
         return authorities;
     }
