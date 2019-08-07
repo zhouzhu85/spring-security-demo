@@ -58,4 +58,9 @@ public class UserServiceImpl implements IUserService {
         userInfo.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));
         userDao.save(userInfo);
     }
+
+    @Override
+    public UserInfo findById(String id) {
+        return userDao.findById(id);
+    }
 }
