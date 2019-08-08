@@ -4,11 +4,14 @@ import com.github.pagehelper.PageInfo;
 import com.zhouzhu.pojo.Orders;
 import com.zhouzhu.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -22,7 +25,14 @@ public class OrdersController {
     @Autowired
     private IOrdersService iOrdersService;
 
+    /**
+     * 订单列表查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("findAll")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView findAll(@RequestParam(name = "page",required = true,defaultValue = "1") Integer page,
                                 @RequestParam(name = "pageSize",required = true,defaultValue = "10") Integer pageSize){
         List<Orders> ordersList=iOrdersService.findAllByPage(page,pageSize);

@@ -7,6 +7,21 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <!--开启jsr-250注解方式实现方法级权限控制
+        @RolesAllowed("ADMIN") 里面权限与数据库对应就可以权限控制
+    -->
+    <!--    <security:global-method-security jsr250-annotations="enabled"/>-->
+
+
+    <!-- 开启security自带的@Secured注解方式实现方法纪权限控制
+         但这个注解方式，@Secured("ROLE_XXX")里面的权限必须以 ROLE_ 开头才能权限控制
+    -->
+<!--    <security:global-method-security secured-annotations="enabled"/>-->
+
+<!--  表达式注解方式实现权限控制  -->
+    <security:global-method-security pre-post-annotations="enabled"/>
+
+
     <!-- 配置不拦截的资源 -->
     <security:http pattern="/login.jsp" security="none"/>
     <security:http pattern="/failer.jsp" security="none"/>
