@@ -1,5 +1,6 @@
 package com.zhouzhu.dao;
 
+import com.zhouzhu.pojo.Role;
 import com.zhouzhu.pojo.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -40,4 +41,10 @@ public interface IUserDao {
             @Result(column = "id", property = "roles", javaType = List.class, many = @Many(select = "com.zhouzhu.dao.IRoleDao.findRoleByUserId"))
     })
     UserInfo findById(String id);
+
+    @Select("select * from role where id not in (select roleId from users_role where userId=#{userId})")
+    List<Role> findOtherRoles(String userId);
+
+    @Insert("insert into users_role (userId,roleId) values (#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId") String userId,@Param("roleId")String roleId);
 }
