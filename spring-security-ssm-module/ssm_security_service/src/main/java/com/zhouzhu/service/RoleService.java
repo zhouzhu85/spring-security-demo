@@ -1,5 +1,6 @@
 package com.zhouzhu.service;
 
+import com.zhouzhu.pojo.Permission;
 import com.zhouzhu.pojo.Role;
 
 import java.util.List;
@@ -14,4 +15,10 @@ public interface RoleService {
     List<Role> findAll();
 
     void save(Role role);
+
+    Role findById(String roleId);
+
+    List<Permission> findOtherPermission(String roleId);
+
+    void addPermissionToRole(String roleId, String[] permissionIds);
 }
