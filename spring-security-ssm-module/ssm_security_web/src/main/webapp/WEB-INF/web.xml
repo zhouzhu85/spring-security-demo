@@ -12,6 +12,10 @@
     <listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+<!--配置请求上下文监听-->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
 <!--  配置spring mvc 的核心控制器-->
     <servlet>
       <servlet-name>springmvcDispatcherServlet</servlet-name>
