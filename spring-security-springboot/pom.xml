@@ -18,7 +18,7 @@
   </parent>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <mysql.version>5.1.32</mysql.version>
+      <mysql.version>8.0.16</mysql.version>
   </properties>
 
   <dependencies>
